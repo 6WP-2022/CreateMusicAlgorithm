@@ -60,15 +60,18 @@ document.getElementById('file').onchange = function(){
     }
 
     console.log(MusicData);
+    console.log("musicselect:"+musicselect);
     //音楽再生関数へ
     switch (musicselect){
-      case 1:
+      case 0:
         PlayMusic1();
-      case 2:
+      case 1:
         PlayMusic2();
-      case 3:
+        console.log("再生1");
+        break;
+      case 2:
         PlayMusic3();
-      case 4:
+      case 3:
         PlayMusic4();
     }
 
@@ -123,39 +126,19 @@ function Selection4(){
 }
 
 
-/*
-// インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
-const SE1 = new Howl({
-  src: [
-    "demo.ogg", "demo.m4a", "demo.mp3", "demo.ac3"
-  ],
-  sprite: {
-    "punch1": [   0,  3271],  // 1曲目
-    "punch2": [5000,  35000],   // 2曲目
-    },
-  onload: ()=>{
-    // ボタンを有効にする
-    document.querySelectorAll(".punch").forEach((element)=>{
-      element.removeAttribute("disabled");
-    });
-  }
-});
-*/
-
-
 
 function PlayMusic1(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE1 = new Howl({
     src: [
-      "sample3.ogg", "sample3.m4a", "sample3.mp3", "sample3.ac3"
+      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
     ],
     sprite: {
       "sample3_4": [   0,  18938.775510204083],  // 1曲目
-      "sample3_3": [20000,  38991.020408163266],   // 2曲目
-      "sample3_2": [40000,  59382.85714285715],
-      "sample3_1": [61000,  79416.326530612252]
-      },
+      "sample3_3": [20000,  18991.020408163266],   // 2曲目
+      "sample3_2": [40000,  19382.85714285715],
+      "sample3_1": [61000,  18416.326530612252]
+    },
     onload: ()=>{
       // ボタンを有効にする
       document.querySelectorAll(".punch").forEach((element)=>{
@@ -167,10 +150,12 @@ function PlayMusic1(){
   document.querySelector("#btn-play1").addEventListener("click", ()=>{
     //section1
     SE1.play(MusicData[0]);
+    //console.log("再生1");
     //section2
     setTimeout(()=>{
       SE1.play(MusicData[1]);
     }, 18416.326530612252);
+    //console.log("再生2");
     /*//section3
     setTimeout(()=>{
       SE1.play("punch1");
@@ -188,23 +173,24 @@ function PlayMusic1(){
       SE1.play("punch1");
     }, 2500);
     */
-  });
-  // 中
-
-
+   });
+   // 中
+ 
+   
 }
+  
 
 function PlayMusic2(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE2 = new Howl({
     src: [
-      "sample4.ogg", "sample4.m4a", "sample4.mp3", "sample4.ac3"
+      "./music/sample4.ogg", "./music/sample4.m4a", "./music/sample4.mp3", "./music/sample4.ac3"
     ],
     sprite: {
       "sample4_4": [   0,  22857.14285714286],  // 1曲目
-      "sample4_3": [24000,  46857.142857142862],   // 2曲目
-      "sample4_2": [48000,  70700.408163265307],  // 1曲目
-      "sample4_1": [72000,  94700.408163265307]   // 2曲目
+      "sample4_3": [24000,  22857.142857142862],   // 2曲目
+      "sample4_2": [48000,  22700.408163265307],  // 1曲目
+      "sample4_1": [72000,  22700.408163265307]   // 2曲目
       },
     onload: ()=>{
       // ボタンを有効にする
@@ -216,11 +202,12 @@ function PlayMusic2(){
   //[event] ボタンクリック時に実行
   document.querySelector("#btn-play1").addEventListener("click", ()=>{
     //section1
-    SE2.play(MusicData[0]);
+    console.log(MusicData[0]);
     //section2
     setTimeout(()=>{
       SE2.play(MusicData[1]);
     }, 22700.408163265307);
+    //console.log("再生2");
     /*//section3
     setTimeout(()=>{
       SE1.play("punch1");
@@ -249,7 +236,7 @@ function PlayMusic3(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE3 = new Howl({
     src: [
-      "sample5.ogg", "sample5.m4a", "sample5.mp3", "sample5.ac3"
+      "./music/sample5.ogg", "./music/sample5.m4a", "./music/sample5.mp3", "./music/sample5.ac3"
     ],
     sprite: {
       "sample5_4": [    0,  25600],  // 1曲目
@@ -298,13 +285,13 @@ function PlayMusic4(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE1 = new Howl({
     src: [
-      "sample3.ogg", "sample3.m4a", "sample3.mp3", "sample3.ac3"
+      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
     ],
     sprite: {
       "sample3_4": [   0,  18938.775510204083],  // 1曲目
-      "sample3_3": [20000,  38991.020408163266],   // 2曲目
-      "sample3_2": [40000,  59382.85714285715],
-      "sample3_1": [61000,  79416.326530612252]
+      "sample3_3": [20000,  18991.020408163266],   // 2曲目
+      "sample3_2": [40000,  19382.85714285715],
+      "sample3_1": [61000,  18416.326530612252]
       },
     onload: ()=>{
       // ボタンを有効にする
