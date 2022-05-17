@@ -98,30 +98,54 @@ function calc_Exercise(overTreshhold){
 
 //セクションごとの音楽選択関数（music1）
 function Selection1(){
-  const music = ["sample3_1","sample3_2","sample3_3","sample3_4"]
+  const music = [
+    ["sample1_1_1","sample1_2_1","sample1_3_1","sample1_4_1","sample1_5_1"],
+    ["sample1_1_2","sample1_2_2","sample1_3_2","sample1_4_2","sample1_5_2"],
+    ["sample1_1_3","sample1_2_3","sample1_3_3","sample1_4_3","sample1_5_3"],
+    ["sample1_1_4","sample1_2_4","sample1_3_4","sample1_4_4","sample1_5_4"]
+  ]
+
   for(var i=0;i<MusicData.length;i++){
-    MusicData[i] = music[motion[i]];
+    MusicData[i] = music[motion[i]][i];
   }
 }
 //セクションごとの音楽選択関数（music2）
 function Selection2(){
-  const music = ["sample4_1","sample4_2","sample4_3","sample4_4"]
+  const music = [
+    ["sample2_1_1","sample2_2_1","sample2_3_1","sample2_4_1","sample2_5_1"],
+    ["sample2_1_2","sample2_2_2","sample2_3_2","sample2_4_2","sample2_5_2"],
+    ["sample2_1_3","sample2_2_3","sample2_3_3","sample2_4_3","sample2_5_3"],
+    ["sample2_1_4","sample2_2_4","sample2_3_4","sample2_4_4","sample2_5_4"]
+  ]
+
   for(var i=0;i<MusicData.length;i++){
-    MusicData[i] = music[motion[i]];
+    MusicData[i] = music[motion[i]][i];
   }
 }
 //セクションごとの音楽選択関数（music3）
 function Selection3(){
-  const music = ["sample5_1","sample5_2","sample5_3","sample5_4"]
+  const music = [
+    ["sample3_1_1","sample3_2_1","sample3_3_1","sample3_4_1","sample3_5_1"],
+    ["sample3_1_2","sample3_2_2","sample3_3_2","sample3_4_2","sample3_5_2"],
+    ["sample3_1_3","sample3_2_3","sample3_3_3","sample3_4_3","sample3_5_3"],
+    ["sample3_1_4","sample3_2_4","sample3_3_4","sample3_4_4","sample3_5_4"]
+  ]
+
   for(var i=0;i<MusicData.length;i++){
-    MusicData[i] = music[motion[i]];
+    MusicData[i] = music[motion[i]][i];
   }
 }
 //セクションごとの音楽選択関数（music4）
 function Selection4(){
-  const music = ["sample3_1","sample3_2","sample3_3","sample3_4"]
+  const music = [
+    ["sample4_1_1","sample4_2_1","sample4_3_1","sample4_4_1","sample4_5_1"],
+    ["sample4_1_2","sample4_2_2","sample4_3_2","sample4_4_2","sample4_5_2"],
+    ["sample4_1_3","sample4_2_3","sample4_3_3","sample4_4_3","sample4_5_3"],
+    ["sample4_1_4","sample4_2_4","sample4_3_4","sample4_4_4","sample4_5_4"]
+  ]
+
   for(var i=0;i<MusicData.length;i++){
-    MusicData[i] = music[motion[i]];
+    MusicData[i] = music[motion[i]][i];
   }
 }
 
@@ -131,13 +155,29 @@ function PlayMusic1(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE1 = new Howl({
     src: [
-      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
+      "./music/sample1.ogg", "./music/sample1.m4a", "./music/sample1.mp3", "./music/sample1.ac3"
     ],
     sprite: {
-      "sample3_4": [   0,  18938.775510204083],  // 1曲目
-      "sample3_3": [20000,  18991.020408163266],   // 2曲目
-      "sample3_2": [40000,  19382.85714285715],
-      "sample3_1": [61000,  18416.326530612252]
+      "sample1_1_1": [0, 8007.596371882086],
+      "sample1_2_1": [10000,8007.596371882088],
+      "sample1_3_1": [20000,8007.596371882088],
+      "sample1_4_1": [30000,8007.596371882088],
+      "sample1_5_1": [40000,8007.596371882088],
+      "sample1_1_2": [50000,8007.596371882088],
+      "sample1_2_2": [60000,8007.596371882088],
+      "sample1_3_2": [70000,8007.596371882088],
+      "sample1_4_2": [80000,8007.596371882088],
+      "sample1_5_2": [90000,8007.596371882088],
+      "sample1_1_3": [100000,8007.596371882088],
+      "sample1_2_3": [110000,8007.596371882088],
+      "sample1_3_3": [120000,8007.596371882088],
+      "sample1_4_3": [130000,8007.596371882088],
+      "sample1_5_3": [140000,8007.596371882088],
+      "sample1_1_4": [150000,8007.596371882088],
+      "sample1_2_4": [160000,8007.596371882088],
+      "sample1_3_4": [170000,8007.596371882088],
+      "sample1_4_4": [180000,8007.596371882088],
+      "sample1_5_4": [190000,8007.596371882088],
     },
     onload: ()=>{
       // ボタンを有効にする
@@ -154,7 +194,7 @@ function PlayMusic1(){
     //section2
     setTimeout(()=>{
       SE1.play(MusicData[1]);
-    }, 18416.326530612252);
+    }, 8007.596371882088);
     //console.log("再生2");
     /*//section3
     setTimeout(()=>{
@@ -184,14 +224,30 @@ function PlayMusic2(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE2 = new Howl({
     src: [
-      "./music/sample4.ogg", "./music/sample4.m4a", "./music/sample4.mp3", "./music/sample4.ac3"
+      "./music/sample2.ogg", "./music/sample2.m4a", "./music/sample2.mp3", "./music/sample2.ac3"
     ],
     sprite: {
-      "sample4_4": [   0,  22857.14285714286],  // 1曲目
-      "sample4_3": [24000,  22857.142857142862],   // 2曲目
-      "sample4_2": [48000,  22700.408163265307],  // 1曲目
-      "sample4_1": [72000,  22700.408163265307]   // 2曲目
-      },
+      "sample2_1_1": [0, 8007.596371882086],
+      "sample2_2_1": [10000,8007.596371882088],
+      "sample2_3_1": [20000,8007.596371882088],
+      "sample2_4_1": [30000,8007.596371882088],
+      "sample2_5_1": [40000,8007.596371882088],
+      "sample2_1_2": [50000,8007.596371882088],
+      "sample2_2_2": [60000,8007.596371882088],
+      "sample2_3_2": [70000,8007.596371882088],
+      "sample2_4_2": [80000,8007.596371882088],
+      "sample2_5_2": [90000,8007.596371882088],
+      "sample2_1_3": [100000,8007.596371882088],
+      "sample2_2_3": [110000,8007.596371882088],
+      "sample2_3_3": [120000,8007.596371882088],
+      "sample2_4_3": [130000,8007.596371882088],
+      "sample2_5_3": [140000,8007.596371882088],
+      "sample2_1_4": [150000,8007.596371882088],
+      "sample2_2_4": [160000,8007.596371882088],
+      "sample2_3_4": [170000,8007.596371882088],
+      "sample2_4_4": [180000,8007.596371882088],
+      "sample2_5_4": [190000,8007.596371882088],
+    },
     onload: ()=>{
       // ボタンを有効にする
       document.querySelectorAll(".punch").forEach((element)=>{
@@ -237,14 +293,30 @@ function PlayMusic3(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE3 = new Howl({
     src: [
-      "./music/sample5.ogg", "./music/sample5.m4a", "./music/sample5.mp3", "./music/sample5.ac3"
+      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
     ],
     sprite: {
-      "sample5_4": [    0,  25600],  // 1曲目
-      "sample5_3": [27000,  25652.24489795918],   // 2曲目
-      "sample5_2": [54000,  25521.63265306123],  // 1曲目
-      "sample5_1": [81000,  25521.63265306123]
-      },
+      "sample3_1_1": [0, 8007.596371882086],
+      "sample3_2_1": [10000,8007.596371882088],
+      "sample3_3_1": [20000,8007.596371882088],
+      "sample3_4_1": [30000,8007.596371882088],
+      "sample3_5_1": [40000,8007.596371882088],
+      "sample3_1_2": [50000,8007.596371882088],
+      "sample3_2_2": [60000,8007.596371882088],
+      "sample3_3_2": [70000,8007.596371882088],
+      "sample3_4_2": [80000,8007.596371882088],
+      "sample3_5_2": [90000,8007.596371882088],
+      "sample3_1_3": [100000,8007.596371882088],
+      "sample3_2_3": [110000,8007.596371882088],
+      "sample3_3_3": [120000,8007.596371882088],
+      "sample3_4_3": [130000,8007.596371882088],
+      "sample3_5_3": [140000,8007.596371882088],
+      "sample3_1_4": [150000,8007.596371882088],
+      "sample3_2_4": [160000,8007.596371882088],
+      "sample3_3_4": [170000,8007.596371882088],
+      "sample3_4_4": [180000,8007.596371882088],
+      "sample3_5_4": [190000,8007.596371882088],
+    },
     onload: ()=>{
       // ボタンを有効にする
       document.querySelectorAll(".punch").forEach((element)=>{
@@ -286,14 +358,30 @@ function PlayMusic4(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE1 = new Howl({
     src: [
-      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
+      "./music/sample4.ogg", "./music/sample4.m4a", "./music/sample4.mp3", "./music/sample4.ac3"
     ],
     sprite: {
-      "sample3_4": [   0,  18938.775510204083],  // 1曲目
-      "sample3_3": [20000,  18991.020408163266],   // 2曲目
-      "sample3_2": [40000,  19382.85714285715],
-      "sample3_1": [61000,  18416.326530612252]
-      },
+      "sample4_1_1": [0, 8007.596371882086],
+      "sample4_2_1": [10000,8007.596371882088],
+      "sample4_3_1": [20000,8007.596371882088],
+      "sample4_4_1": [30000,8007.596371882088],
+      "sample4_5_1": [40000,8007.596371882088],
+      "sample4_1_2": [50000,8007.596371882088],
+      "sample4_2_2": [60000,8007.596371882088],
+      "sample4_3_2": [70000,8007.596371882088],
+      "sample4_4_2": [80000,8007.596371882088],
+      "sample4_5_2": [90000,8007.596371882088],
+      "sample4_1_3": [100000,8007.596371882088],
+      "sample4_2_3": [110000,8007.596371882088],
+      "sample4_3_3": [120000,8007.596371882088],
+      "sample4_4_3": [130000,8007.596371882088],
+      "sample4_5_3": [140000,8007.596371882088],
+      "sample4_1_4": [150000,8007.596371882088],
+      "sample4_2_4": [160000,8007.596371882088],
+      "sample4_3_4": [170000,8007.596371882088],
+      "sample4_4_4": [180000,8007.596371882088],
+      "sample4_5_4": [190000,8007.596371882088],
+    },
     onload: ()=>{
       // ボタンを有効にする
       document.querySelectorAll(".punch").forEach((element)=>{
