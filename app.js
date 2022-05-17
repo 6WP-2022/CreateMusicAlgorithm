@@ -202,6 +202,7 @@ function PlayMusic2(){
   //[event] ボタンクリック時に実行
   document.querySelector("#btn-play1").addEventListener("click", ()=>{
     //section1
+    SE2.play(MusicData[0]);
     console.log(MusicData[0]);
     //section2
     setTimeout(()=>{

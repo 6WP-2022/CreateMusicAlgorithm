@@ -6,14 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- 本文 -->
 <div class="container">
   <p>あなたはすでに楽器を持っている</p>
   <p>あとは</p>
   <h1>好きなように動き回るだけ</h1>
+  <!-- 靴の画像 -->
   <img class="image_shoes" src="shoes_fig.png">
-  <!-- 再生ボタン (ロード完了まで利用不可) -->
-  <button id="btn-play1" type="button" class="punch" disabled>音楽</button>
-  <input type="file" name="file" id="file" />
+  <div>
+    <!-- ファイル添付ボタン -->
+    <label for="file" class="filelabel">Turn the motion into music</label>
+    <input type="file" name="file" id="file" class="File"/>
+  </div>
+  <div class="music">
+    <!-- 再生ボタン (ロード完了まで利用不可) -->
+    <button id="btn-play1" type="button" class="punch" disabled>音楽</button>
+  </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.min.js"></script>
 <script src="app.js"></script>
