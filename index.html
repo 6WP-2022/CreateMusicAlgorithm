@@ -3,18 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <title>6WP</title>
-  <style>
-    .punch{ width:100px; height:40px; padding:10px; font-size:18px; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<h1>6WP</h1>
-
-<!-- 再生ボタン (ロード完了まで利用不可) -->
-<button id="btn-play1" type="button" class="punch" disabled>音楽</button>
-<input type="file" name="file" id="file" />
-
+<div class="container">
+  <p>あなたはすでに楽器を持っている</p>
+  <p>あとは</p>
+  <h1>好きなように動き回るだけ</h1>
+  <img class="image_shoes" src="shoes_fig.png">
+  <!-- 再生ボタン (ロード完了まで利用不可) -->
+  <button id="btn-play1" type="button" class="punch" disabled>音楽</button>
+  <input type="file" name="file" id="file" />
+</div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.1.3/howler.min.js"></script>
 <script src="app.js"></script>
 
