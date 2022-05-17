@@ -12,8 +12,6 @@ MusicData.fill(0);
 const treshhold =1.06;
 
 
-
-
 //ファイル読み込み時に実行
 document.getElementById('file').onchange = function(){
   var musicselect;
@@ -61,6 +59,7 @@ document.getElementById('file').onchange = function(){
 
     console.log(MusicData);
     console.log("musicselect:"+musicselect);
+    musicselect=4;
     //音楽再生関数へ
     switch (musicselect){
       case 0:
@@ -73,6 +72,8 @@ document.getElementById('file').onchange = function(){
         PlayMusic3();
       case 3:
         PlayMusic4();
+      case 4:
+        PlayMusic5();
     }
 
   };
@@ -181,6 +182,7 @@ function PlayMusic1(){
     },
     onload: ()=>{
       // ボタンを有効にする
+      document.getElementById('btn-play1').style.visibility = 'visible';
       document.querySelectorAll(".punch").forEach((element)=>{
         element.removeAttribute("disabled");
       });
@@ -250,6 +252,7 @@ function PlayMusic2(){
     },
     onload: ()=>{
       // ボタンを有効にする
+      document.getElementById('btn-play1').style.visibility = 'visible';
       document.querySelectorAll(".punch").forEach((element)=>{
         element.removeAttribute("disabled");
       });
@@ -319,6 +322,7 @@ function PlayMusic3(){
     },
     onload: ()=>{
       // ボタンを有効にする
+      document.getElementById('btn-play1').style.visibility = 'visible';
       document.querySelectorAll(".punch").forEach((element)=>{
         element.removeAttribute("disabled");
       });
@@ -384,6 +388,7 @@ function PlayMusic4(){
     },
     onload: ()=>{
       // ボタンを有効にする
+      document.getElementById('btn-play1').style.visibility = 'visible';
       document.querySelectorAll(".punch").forEach((element)=>{
         element.removeAttribute("disabled");
       });
@@ -420,3 +425,58 @@ function PlayMusic4(){
  
 }
  
+function PlayMusic5(){
+  // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
+  const SE1 = new Howl({
+    src: [
+      "./music/sample.ogg", "./music/sample.m4a", "./music/sample.mp3", "./music/sample.ac3"
+    ],
+    sprite: {
+      "sample1_1": [0, 8042.65306122449],
+      "sample1_2": [10000,8042.65306122449],
+      "sample1_3": [20000,8042.65306122449],
+      "sample1_4": [20000,8042.65306122449]
+    },
+    onload: ()=>{
+      // ボタンを有効にする
+      document.getElementById('btn-play1').style.visibility = 'visible';
+      document.querySelectorAll(".punch").forEach((element)=>{
+        element.removeAttribute("disabled");
+      });
+    }
+  });
+  //[event] ボタンクリック時に実行
+  document.querySelector("#btn-play1").addEventListener("click", ()=>{
+    //section1
+    SE1.play("sample1_2");
+    //section2
+    setTimeout(()=>{
+      SE1.play("sample1_1");
+    }, 8042.65306122449);
+    setTimeout(()=>{
+      SE1.play("sample1_3");
+    }, 16084.65306122449);
+    /*//section3
+    setTimeout(()=>{
+      SE1.play("punch1");
+    }, 1000);
+    //section4
+    setTimeout(()=>{
+      SE1.play("punch1");
+    }, 1500);
+    //section5
+    setTimeout(()=>{
+      SE1.play("punch1");
+    }, 2000);
+    //section6
+    setTimeout(()=>{
+      SE1.play("punch1");
+    }, 2500);
+    */
+  });
+  // 中
+
+ 
+}
+ 
+
