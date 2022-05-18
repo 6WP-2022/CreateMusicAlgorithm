@@ -7,9 +7,8 @@ motion.fill(0);
 //セクションごとの音楽名を記録
 var MusicData = new Array(5);
 MusicData.fill(0);
-
-//閾値
-const treshhold =1.06;
+var count = new Array(5);
+count.fill(0)
 
 
 //ファイル読み込み時に実行
@@ -21,12 +20,34 @@ document.getElementById('file').onchange = function(){
   var reader = new FileReader();
   //file読み込み完了時のイベント
   reader.onload = function(){    
+    var flag = true;
     //読み込んだ文字列データをjsonとして扱い、オブジェクトへ変換
     const obj = JSON.parse(this.result);
     //プロパティ毎に計算
     for(var data in obj){
       var Data = obj[data];
       //オブジェクトの中で時間がn秒~n+?秒の時、閾値以上の値がいくつかを計算
+      if(Data["Time"] >= 3 && Data["Time"] <= 12){     //2秒以下
+        overTreshhold[0] += Data["Accel"]; 
+        count[0] += 1;
+      }else if(Data["Time"] > 12 && Data["Time"] <= 24){   //2秒より上、4秒以下
+        overTreshhold[1] += Data["Accel"]; 
+        count[1] += 1;
+      }else if(Data["Time"] > 24 && Data["Time"] <= 36){   //2秒より上、4秒以下
+        overTreshhold[2] += Data["Accel"]; 
+        count[2] += 1;
+      }else if(Data["Time"] > 36 && Data["Time"] <= 48){   //2秒より上、4秒以下
+        overTreshhold[3] += Data["Accel"]; 
+        count[3] += 1;
+      }else if(Data["Time"] > 48 && Data["Time"] <= 60){   //2秒より上、4秒以下
+        overTreshhold[4] += Data["Accel"]; 
+        count[4] += 1;
+      }
+      
+
+
+
+      /*
       if(Data["Time"] <= 12){     //2秒以下
         if(Data["Accel"] >= treshhold){   //計測データが1以上のとき（閾値が1）
           overTreshhold[0] = overTreshhold[0] + 1; //閾値以上のデータ数をセクション1に代入
@@ -48,12 +69,17 @@ document.getElementById('file').onchange = function(){
           overTreshhold[4] = overTreshhold[4] + 1; //閾値以上のデータ数をセクション2に代入
         }
       }
+      */
     }
-    console.log("閾値" + treshhold +"以上：" + overTreshhold[0] + "回");
-    console.log("閾値" + treshhold +"以上：" + overTreshhold[1] + "回");
-    console.log("閾値" + treshhold +"以上：" + overTreshhold[2] + "回");
-    console.log("閾値" + treshhold +"以上：" + overTreshhold[3] + "回");
-    console.log("閾値" + treshhold +"以上：" + overTreshhold[4] + "回");
+    for(var i=0; i<5;i++){
+      overTreshhold[i]=overTreshhold[i]/count[i]
+    }
+    console.log("平均値：" + overTreshhold[0]);
+    console.log("平均値：" + overTreshhold[1]);
+    console.log("平均値：" + overTreshhold[2]);
+    console.log("平均値：" + overTreshhold[3]);
+    console.log("平均値：" + overTreshhold[4]);
+
 
 
     //一定時間毎の運動強度を計算
@@ -63,7 +89,7 @@ document.getElementById('file').onchange = function(){
 
     //音楽選択関数へ
     musicselect = Math.floor(Math.random() * 3);
-    musicselect=1;
+    musicselect = 0;
     if(musicselect == 0){
       Selection1();
     }else if(musicselect == 1){
@@ -94,11 +120,11 @@ document.getElementById('file').onchange = function(){
 //一定時間毎の運動強度を計算
 function calc_Exercise(overTreshhold){
   var section = 0;
-  if(overTreshhold <= 2){
+  if(overTreshhold <= 1.1){
     section=0;
-  }else if(overTreshhold >2 && overTreshhold <=4){
+  }else if(overTreshhold >1.1 && overTreshhold <=1.4){
     section=1;
-  }else if(overTreshhold >4 && overTreshhold <=8){
+  }else if(overTreshhold >1.4 && overTreshhold <=2.5){
     section=2;
   }else{
     section=3;
