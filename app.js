@@ -1,11 +1,11 @@
 //一定時間毎に閾値を超えた数を記録
-var overTreshhold = new Array(2);
+var overTreshhold = new Array(5);
 overTreshhold.fill(0);
 //運動強度を記録
-var motion = new Array(2);
+var motion = new Array(5);
 motion.fill(0);
 //セクションごとの音楽名を記録
-var MusicData = new Array(2);
+var MusicData = new Array(5);
 MusicData.fill(0);
 
 //閾値
@@ -27,55 +27,65 @@ document.getElementById('file').onchange = function(){
     for(var data in obj){
       var Data = obj[data];
       //オブジェクトの中で時間がn秒~n+?秒の時、閾値以上の値がいくつかを計算
-      if(Data["Time"] <= 2){     //2秒以下
+      if(Data["Time"] <= 12){     //2秒以下
         if(Data["Accel"] >= treshhold){   //計測データが1以上のとき（閾値が1）
           overTreshhold[0] = overTreshhold[0] + 1; //閾値以上のデータ数をセクション1に代入
         }
-      }else if(Data["Time"] > 2 && Data["Time"] <= 4){   //2秒より上、4秒以下
+      }else if(Data["Time"] > 12 && Data["Time"] <= 24){   //2秒より上、4秒以下
         if(Data["Accel"] >= treshhold){    //計測データが1以上のとき（閾値が1）
           overTreshhold[1] = overTreshhold[1] + 1; //閾値以上のデータ数をセクション2に代入
+        }
+      }else if(Data["Time"] > 24 && Data["Time"] <= 36){   //2秒より上、4秒以下
+        if(Data["Accel"] >= treshhold){    //計測データが1以上のとき（閾値が1）
+          overTreshhold[2] = overTreshhold[2] + 1; //閾値以上のデータ数をセクション2に代入
+        }
+      }else if(Data["Time"] > 36 && Data["Time"] <= 48){   //2秒より上、4秒以下
+        if(Data["Accel"] >= treshhold){    //計測データが1以上のとき（閾値が1）
+          overTreshhold[3] = overTreshhold[3] + 1; //閾値以上のデータ数をセクション2に代入
+        }
+      }else if(Data["Time"] > 48 && Data["Time"] <= 60){   //2秒より上、4秒以下
+        if(Data["Accel"] >= treshhold){    //計測データが1以上のとき（閾値が1）
+          overTreshhold[4] = overTreshhold[4] + 1; //閾値以上のデータ数をセクション2に代入
         }
       }
     }
     console.log("閾値" + treshhold +"以上：" + overTreshhold[0] + "回");
     console.log("閾値" + treshhold +"以上：" + overTreshhold[1] + "回");
+    console.log("閾値" + treshhold +"以上：" + overTreshhold[2] + "回");
+    console.log("閾値" + treshhold +"以上：" + overTreshhold[3] + "回");
+    console.log("閾値" + treshhold +"以上：" + overTreshhold[4] + "回");
+
 
     //一定時間毎の運動強度を計算
-    for(var i=0; i<2; i++){
+    for(var i=0; i<5; i++){
       motion[i] = calc_Exercise(overTreshhold[i]);
     }
 
     //音楽選択関数へ
     musicselect = Math.floor(Math.random() * 3);
+    musicselect=1;
     if(musicselect == 0){
       Selection1();
     }else if(musicselect == 1){
       Selection2();
     }else if(musicselect == 2){
       Selection3();
-    }else{
-      Selection4();
     }
 
     console.log(MusicData);
-    console.log("musicselect:"+musicselect);
-    musicselect=4;
+    
+    
+    console.log("musicselect:"+(musicselect));
     //音楽再生関数へ
     switch (musicselect){
       case 0:
         PlayMusic1();
       case 1:
-        PlayMusic2();
         console.log("再生1");
-        break;
+        PlayMusic2();
       case 2:
         PlayMusic3();
-      case 3:
-        PlayMusic4();
-      case 4:
-        PlayMusic5();
     }
-
   };
   //読み込みを実行
   reader.readAsText(file);
@@ -100,10 +110,10 @@ function calc_Exercise(overTreshhold){
 //セクションごとの音楽選択関数（music1）
 function Selection1(){
   const music = [
-    ["sample1_1_1","sample1_2_1","sample1_3_1","sample1_4_1","sample1_5_1"],
-    ["sample1_1_2","sample1_2_2","sample1_3_2","sample1_4_2","sample1_5_2"],
-    ["sample1_1_3","sample1_2_3","sample1_3_3","sample1_4_3","sample1_5_3"],
-    ["sample1_1_4","sample1_2_4","sample1_3_4","sample1_4_4","sample1_5_4"]
+    ["preset1_1_1","preset1_2_1","preset1_3_1","preset1_4_1","preset1_5_1"],
+    ["preset1_1_2","preset1_2_2","preset1_3_2","preset1_4_2","preset1_5_2"],
+    ["preset1_1_3","preset1_2_3","preset1_3_3","preset1_4_3","preset1_5_3"],
+    ["preset1_1_4","preset1_2_4","preset1_3_4","preset1_4_4","preset1_5_4"]
   ]
 
   for(var i=0;i<MusicData.length;i++){
@@ -113,10 +123,10 @@ function Selection1(){
 //セクションごとの音楽選択関数（music2）
 function Selection2(){
   const music = [
-    ["sample2_1_1","sample2_2_1","sample2_3_1","sample2_4_1","sample2_5_1"],
-    ["sample2_1_2","sample2_2_2","sample2_3_2","sample2_4_2","sample2_5_2"],
-    ["sample2_1_3","sample2_2_3","sample2_3_3","sample2_4_3","sample2_5_3"],
-    ["sample2_1_4","sample2_2_4","sample2_3_4","sample2_4_4","sample2_5_4"]
+    ["preset2_1_1","preset2_2_1","preset2_3_1","preset2_4_1","preset2_5_1"],
+    ["preset2_1_2","preset2_2_2","preset2_3_2","preset2_4_2","preset2_5_2"],
+    ["preset2_1_3","preset2_2_3","preset2_3_3","preset2_4_3","preset2_5_3"],
+    ["preset2_1_4","preset2_2_4","preset2_3_4","preset2_4_4","preset2_5_4"]
   ]
 
   for(var i=0;i<MusicData.length;i++){
@@ -126,29 +136,17 @@ function Selection2(){
 //セクションごとの音楽選択関数（music3）
 function Selection3(){
   const music = [
-    ["sample3_1_1","sample3_2_1","sample3_3_1","sample3_4_1","sample3_5_1"],
-    ["sample3_1_2","sample3_2_2","sample3_3_2","sample3_4_2","sample3_5_2"],
-    ["sample3_1_3","sample3_2_3","sample3_3_3","sample3_4_3","sample3_5_3"],
-    ["sample3_1_4","sample3_2_4","sample3_3_4","sample3_4_4","sample3_5_4"]
+    ["preset3_1_1","preset3_2_1","preset3_3_1","preset3_4_1","preset3_5_1"],
+    ["preset3_1_2","preset3_2_2","preset3_3_2","preset3_4_2","preset3_5_2"],
+    ["preset3_1_3","preset3_2_3","preset3_3_3","preset3_4_3","preset3_5_3"],
+    ["preset3_1_4","preset3_2_4","preset3_3_4","preset3_4_4","preset3_5_4"]
   ]
 
   for(var i=0;i<MusicData.length;i++){
     MusicData[i] = music[motion[i]][i];
   }
 }
-//セクションごとの音楽選択関数（music4）
-function Selection4(){
-  const music = [
-    ["sample4_1_1","sample4_2_1","sample4_3_1","sample4_4_1","sample4_5_1"],
-    ["sample4_1_2","sample4_2_2","sample4_3_2","sample4_4_2","sample4_5_2"],
-    ["sample4_1_3","sample4_2_3","sample4_3_3","sample4_4_3","sample4_5_3"],
-    ["sample4_1_4","sample4_2_4","sample4_3_4","sample4_4_4","sample4_5_4"]
-  ]
 
-  for(var i=0;i<MusicData.length;i++){
-    MusicData[i] = music[motion[i]][i];
-  }
-}
 
 
 
@@ -156,30 +154,30 @@ function PlayMusic1(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE1 = new Howl({
     src: [
-      "./music/sample1.ogg", "./music/sample1.m4a", "./music/sample1.mp3", "./music/sample1.ac3"
+      "./music/preset1.ogg", "./music/preset1.m4a", "./music/preset1.mp3", "./music/preset1.ac3"
     ],
     sprite: {
-      "sample1_1_1": [0, 8007.596371882086],
-      "sample1_2_1": [10000,8007.596371882088],
-      "sample1_3_1": [20000,8007.596371882088],
-      "sample1_4_1": [30000,8007.596371882088],
-      "sample1_5_1": [40000,8007.596371882088],
-      "sample1_1_2": [50000,8007.596371882088],
-      "sample1_2_2": [60000,8007.596371882088],
-      "sample1_3_2": [70000,8007.596371882088],
-      "sample1_4_2": [80000,8007.596371882088],
-      "sample1_5_2": [90000,8007.596371882088],
-      "sample1_1_3": [100000,8007.596371882088],
-      "sample1_2_3": [110000,8007.596371882088],
-      "sample1_3_3": [120000,8007.596371882088],
-      "sample1_4_3": [130000,8007.596371882088],
-      "sample1_5_3": [140000,8007.596371882088],
-      "sample1_1_4": [150000,8007.596371882088],
-      "sample1_2_4": [160000,8007.596371882088],
-      "sample1_3_4": [170000,8007.596371882088],
-      "sample1_4_4": [180000,8007.596371882088],
-      "sample1_5_4": [190000,8007.596371882088],
-    },
+      "preset1_1_1": [0,8042.65306122449],
+      "preset1_1_2": [10000,8042.6530612244915],
+      "preset1_1_3": [20000,8042.6530612244915],
+      "preset1_1_4": [30000,8042.6530612244915],
+      "preset1_2_1": [40200,8042.6530612244915],
+      "preset1_2_2": [50200,8042.6530612244915],
+      "preset1_2_3": [60200,8128.004535147397],
+      "preset1_2_4": [70200,8042.653061224484],
+      "preset1_3_1": [80200,8085.351473922899],
+      "preset1_3_2": [90200,7885.351473922899],
+      "preset1_3_3": [100200,8085.351473922899],
+      "preset1_3_4": [110200,8085.351473922899],
+      "preset1_4_1": [120200,8042.653061224484],
+      "preset1_4_2": [130200,8042.653061224484],
+      "preset1_4_3": [140200,8042.653061224484],
+      "preset1_4_4": [150200,8042.653061224484],
+      "preset1_5_1": [160200,10581.337868480716],
+      "preset1_5_2": [172200,10581.337868480716],
+      "preset1_5_3": [184200,10581.337868480716],
+      "preset1_5_4": [196200,10581.337868480716]
+      },
     onload: ()=>{
       // ボタンを有効にする
       document.getElementById('btn-play1').style.visibility = 'visible';
@@ -196,25 +194,17 @@ function PlayMusic1(){
     //section2
     setTimeout(()=>{
       SE1.play(MusicData[1]);
-    }, 8007.596371882088);
-    //console.log("再生2");
-    /*//section3
+    }, 8042.65306122449);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1000);
-    //section4
+      SE1.play(MusicData[2]);
+    }, 15884);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1500);
-    //section5
+      SE1.play(MusicData[3]);
+    }, 23769);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2000);
-    //section6
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2500);
-    */
+      SE1.play(MusicData[4]);
+    }, 31611);
+   
    });
    // 中
  
@@ -226,32 +216,33 @@ function PlayMusic2(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE2 = new Howl({
     src: [
-      "./music/sample2.ogg", "./music/sample2.m4a", "./music/sample2.mp3", "./music/sample2.ac3"
+      "./music/preset2.ogg", "./music/preset2.m4a", "./music/preset2.mp3", "./music/preset2.ac3"
     ],
     sprite: {
-      "sample2_1_1": [0, 8007.596371882086],
-      "sample2_2_1": [10000,8007.596371882088],
-      "sample2_3_1": [20000,8007.596371882088],
-      "sample2_4_1": [30000,8007.596371882088],
-      "sample2_5_1": [40000,8007.596371882088],
-      "sample2_1_2": [50000,8007.596371882088],
-      "sample2_2_2": [60000,8007.596371882088],
-      "sample2_3_2": [70000,8007.596371882088],
-      "sample2_4_2": [80000,8007.596371882088],
-      "sample2_5_2": [90000,8007.596371882088],
-      "sample2_1_3": [100000,8007.596371882088],
-      "sample2_2_3": [110000,8007.596371882088],
-      "sample2_3_3": [120000,8007.596371882088],
-      "sample2_4_3": [130000,8007.596371882088],
-      "sample2_5_3": [140000,8007.596371882088],
-      "sample2_1_4": [150000,8007.596371882088],
-      "sample2_2_4": [160000,8007.596371882088],
-      "sample2_3_4": [170000,8007.596371882088],
-      "sample2_4_4": [180000,8007.596371882088],
-      "sample2_5_4": [190000,8007.596371882088],
+      "preset2_1_1": [0,7744.013605442177],
+      "preset2_1_2": [9000,7744.013605442177],
+      "preset2_1_3": [18000,7786.666666666669],
+      "preset2_1_4": [27000,7786.666666666669],
+      "preset2_2_1": [36200,7893.333333333331],
+      "preset2_2_2": [45200,7893.333333333331],
+      "preset2_2_3": [54200,7893.333333333331],
+      "preset2_2_4": [63200,7893.333333333331],
+      "preset2_3_1": [72200,7786.6666666666615],
+      "preset2_3_2": [81200,7808.00453514739],
+      "preset2_3_3": [90200,7808.00453514739],
+      "preset2_3_4": [99200,7808.00453514739],
+      "preset2_4_1": [108200,7680.000000000007],
+      "preset2_4_2": [117200,7680.000000000007],
+      "preset2_4_3": [126200,7680.000000000007],
+      "preset2_4_4": [135200,7680.000000000007],
+      "preset2_5_1": [144200,8789.319727891154],
+      "preset2_5_2": [154200,8789.319727891154],
+      "preset2_5_3": [164200,8853.333333333325],
+      "preset2_5_4": [174200,8789.319727891154]
     },
     onload: ()=>{
       // ボタンを有効にする
+      console.log("再生1");
       document.getElementById('btn-play1').style.visibility = 'visible';
       document.querySelectorAll(".punch").forEach((element)=>{
         element.removeAttribute("disabled");
@@ -266,25 +257,17 @@ function PlayMusic2(){
     //section2
     setTimeout(()=>{
       SE2.play(MusicData[1]);
-    }, 22700.408163265307);
+    }, 7744.013605442177);
     //console.log("再生2");
-    /*//section3
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1000);
-    //section4
+      SE2.play(MusicData[2]);
+    }, 15437);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1500);
-    //section5
+      SE2.play(MusicData[3]);
+    }, 23023);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2000);
-    //section6
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2500);
-    */
+      SE2.play(MusicData[4]);
+    }, 30503);
    });
    // 中
  
@@ -296,29 +279,29 @@ function PlayMusic3(){
   // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
   const SE3 = new Howl({
     src: [
-      "./music/sample3.ogg", "./music/sample3.m4a", "./music/sample3.mp3", "./music/sample3.ac3"
+      "./music/preset3.ogg", "./music/preset3.m4a", "./music/preset3.mp3", "./music/preset3.ac3"
     ],
     sprite: {
-      "sample3_1_1": [0, 8007.596371882086],
-      "sample3_2_1": [10000,8007.596371882088],
-      "sample3_3_1": [20000,8007.596371882088],
-      "sample3_4_1": [30000,8007.596371882088],
-      "sample3_5_1": [40000,8007.596371882088],
-      "sample3_1_2": [50000,8007.596371882088],
-      "sample3_2_2": [60000,8007.596371882088],
-      "sample3_3_2": [70000,8007.596371882088],
-      "sample3_4_2": [80000,8007.596371882088],
-      "sample3_5_2": [90000,8007.596371882088],
-      "sample3_1_3": [100000,8007.596371882088],
-      "sample3_2_3": [110000,8007.596371882088],
-      "sample3_3_3": [120000,8007.596371882088],
-      "sample3_4_3": [130000,8007.596371882088],
-      "sample3_5_3": [140000,8007.596371882088],
-      "sample3_1_4": [150000,8007.596371882088],
-      "sample3_2_4": [160000,8007.596371882088],
-      "sample3_3_4": [170000,8007.596371882088],
-      "sample3_4_4": [180000,8007.596371882088],
-      "sample3_5_4": [190000,8007.596371882088],
+      "preset3_1_1": [0,7594.671201814059],
+      "preset3_1_2": [9000,7594.671201814059],
+      "preset3_1_3": [18000,7680],
+      "preset3_1_4": [27000,7680],
+      "preset3_2_1": [36000,7445.351473922905],
+      "preset3_2_2": [45000,7445.351473922905],
+      "preset3_2_3": [54000,7445.351473922905],
+      "preset3_2_4": [63000,7445.351473922898],
+      "preset3_3_1": [72000,7445.351473922898],
+      "preset3_3_2": [81000,7445.351473922898],
+      "preset3_3_3": [90000,7445.351473922898],
+      "preset3_3_4": [99000,7509.319727891153],
+      "preset3_4_1": [108000,7445.351473922898],
+      "preset3_4_2": [117000,7445.351473922898],
+      "preset3_4_3": [126000,7445.351473922898],
+      "preset3_4_4": [135000,7445.351473922898],
+      "preset3_5_1": [144000,11797.34693877552],
+      "preset3_5_2": [157000,12800.000000000011],
+      "preset3_5_3": [171000,12800.000000000011],
+      "preset3_5_4": [185000,12800.000000000011]
     },
     onload: ()=>{
       // ボタンを有効にする
@@ -335,148 +318,20 @@ function PlayMusic3(){
     //section2
     setTimeout(()=>{
       SE3.play(MusicData[1]);
-    }, 25521.63265306123);
-    /*//section3
+    }, 7594.671201814059);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1000);
-    //section4
+      SE3.play(MusicData[2]);
+    }, 15437);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1500);
-    //section5
+      SE3.play(MusicData[3]);
+    }, 23023);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2000);
-    //section6
+      SE3.play(MusicData[4]);
+    }, 7594.671201814059);
     setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2500);
-    */
+      SE3.play(MusicData[5]);
+    }, 30503);
   });
   // 中
 
 }
-
-function PlayMusic4(){
-  // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
-  const SE1 = new Howl({
-    src: [
-      "./music/sample4.ogg", "./music/sample4.m4a", "./music/sample4.mp3", "./music/sample4.ac3"
-    ],
-    sprite: {
-      "sample4_1_1": [0, 8007.596371882086],
-      "sample4_2_1": [10000,8007.596371882088],
-      "sample4_3_1": [20000,8007.596371882088],
-      "sample4_4_1": [30000,8007.596371882088],
-      "sample4_5_1": [40000,8007.596371882088],
-      "sample4_1_2": [50000,8007.596371882088],
-      "sample4_2_2": [60000,8007.596371882088],
-      "sample4_3_2": [70000,8007.596371882088],
-      "sample4_4_2": [80000,8007.596371882088],
-      "sample4_5_2": [90000,8007.596371882088],
-      "sample4_1_3": [100000,8007.596371882088],
-      "sample4_2_3": [110000,8007.596371882088],
-      "sample4_3_3": [120000,8007.596371882088],
-      "sample4_4_3": [130000,8007.596371882088],
-      "sample4_5_3": [140000,8007.596371882088],
-      "sample4_1_4": [150000,8007.596371882088],
-      "sample4_2_4": [160000,8007.596371882088],
-      "sample4_3_4": [170000,8007.596371882088],
-      "sample4_4_4": [180000,8007.596371882088],
-      "sample4_5_4": [190000,8007.596371882088],
-    },
-    onload: ()=>{
-      // ボタンを有効にする
-      document.getElementById('btn-play1').style.visibility = 'visible';
-      document.querySelectorAll(".punch").forEach((element)=>{
-        element.removeAttribute("disabled");
-      });
-    }
-  });
-  //[event] ボタンクリック時に実行
-  document.querySelector("#btn-play1").addEventListener("click", ()=>{
-    //section1
-    SE1.play(MusicData[0]);
-    //section2
-    setTimeout(()=>{
-      SE1.play(MusicData[1]);
-    }, 18416.326530612252);
-    /*//section3
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1000);
-    //section4
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1500);
-    //section5
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2000);
-    //section6
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2500);
-    */
-  });
-  // 中
-
- 
-}
- 
-function PlayMusic5(){
-  // インスタンスを各段階毎に複数生成　例)SE1, SE2, SE3
-  const SE1 = new Howl({
-    src: [
-      "./music/sample.ogg", "./music/sample.m4a", "./music/sample.mp3", "./music/sample.ac3"
-    ],
-    sprite: {
-      "sample1_1": [0, 8042.65306122449],
-      "sample1_2": [10000,8042.65306122449],
-      "sample1_3": [20000,8042.65306122449],
-      "sample1_4": [20000,8042.65306122449]
-    },
-    onload: ()=>{
-      // ボタンを有効にする
-      document.getElementById('btn-play1').style.visibility = 'visible';
-      document.querySelectorAll(".punch").forEach((element)=>{
-        element.removeAttribute("disabled");
-      });
-    }
-  });
-  //[event] ボタンクリック時に実行
-  document.querySelector("#btn-play1").addEventListener("click", ()=>{
-    //section1
-    SE1.play("sample1_2");
-    //section2
-    setTimeout(()=>{
-      SE1.play("sample1_1");
-    }, 8042.65306122449);
-    setTimeout(()=>{
-      SE1.play("sample1_3");
-    }, 16084.65306122449);
-    /*//section3
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1000);
-    //section4
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 1500);
-    //section5
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2000);
-    //section6
-    setTimeout(()=>{
-      SE1.play("punch1");
-    }, 2500);
-    */
-  });
-  // 中
-
- 
-}
- 
-
